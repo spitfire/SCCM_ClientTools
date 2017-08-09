@@ -1,0 +1,15 @@
+# Text files
+*.txt
+*.csv
+
+#Sapien PowerShell Studio Temp Files
+*.TempPoint.ps1
+
+#Executable Files
+*.exe
+
+#Installer Files
+*.msi
+
+#Mac files
+*.DS_Store
