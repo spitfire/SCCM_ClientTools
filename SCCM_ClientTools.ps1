@@ -14,7 +14,8 @@
 	.DESCRIPTION
 		SCCM Client and SCCM PFE Agent tools.
 #>
-#region SMS Client Tools
+#region SMS Client Assignment Tools
+
 #region Get-AllDomains
 Function Get-AllDomains
 {
@@ -322,7 +323,11 @@ function Check-SMSAssignedSite
 		Set-SMSSiteCode
 	}
 }#endregion Check-SMSAssignedSite
-#endregion SMS Client Tools
+
+#endregion SMS Client Assignment Tools
+
+#region PFE Agent tools
+
 #region Get-PFESiteAssignment
 Function Get-PFESiteAssignment
 {
@@ -429,7 +434,7 @@ Function Set-PFESiteAssignment
 #region Check-PFEAssignedSite
 function Check-PFEAssignedSite
 {
-	Write-Verbose "Info: Checking PFE agent assignment" -strFunction Check-SMSAssignedSite
+	Write-Verbose "Info: Checking PFE agent assignment"
 	[string]$PFESiteAssignment = Get-PFESiteAssignment
 	[string]$SMSMP = Get-SMSMP -Source AD -Primary $true
 	If ($PFESiteAssignment)
@@ -451,3 +456,12 @@ function Check-PFEAssignedSite
 		Set-PFESiteAssignment
 	}
 }#endregion Check-PFEAssignedSite
+
+#region Restart-PFEAgent
+function Restart-PFEAgent
+{
+	Stop-Service PFERemediation
+	Start-Service PFERemediation
+}#endregion Restart-PFEAgent
+
+#endregion PFE Agent tools
